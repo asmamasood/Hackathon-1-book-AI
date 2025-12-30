@@ -1,0 +1,103 @@
+# Module Page Frontmatter Schema
+
+# Purpose: Enforce consistent YAML frontmatter structure across all module pages
+# per spec FR-002 and Constitution Principle II (AI-Native Pedagogy)
+
+# Usage: All Markdown/MDX files in docs/0X-module-name/ must include this frontmatter
+
+# Schema Version: 1.0.0
+# Date: 2025-12-26
+
+# Required Fields
+required:
+  - title
+  - description
+  - keywords
+  - sidebar_position
+
+# Field Definitions
+
+title:
+  type: string
+  description: "Page title displayed in sidebar and browser tab"
+  constraints:
+    - "Must be concise (3-8 words)"
+    - "Should match page topic (e.g., 'Python Bridging with rclpy')"
+    - "First letter capitalized, proper nouns capitalized"
+  example: "Python Bridging with rclpy"
+
+description:
+  type: string
+  description: "1-2 sentence summary of page content for SEO and AI navigation"
+  constraints:
+    - "Maximum 160 characters (SEO meta description limit)"
+    - "Should include primary learning outcome or concept"
+    - "Written in plain language (avoid jargon without explanation)"
+  example: "Learn how to connect AI Agents with robot hardware using Python's rclpy library for ROS 2 communication."
+
+keywords:
+  type: array[string]
+  description: "5-10 search keywords for AI navigation and SEO"
+  constraints:
+    - "Include primary technologies (e.g., 'ROS 2', 'Python', 'NVIDIA Isaac')"
+    - "Include concepts (e.g., 'nodes', 'topics', 'SLAM', 'VLA')"
+    - "Include learning objectives (e.g., 'navigation', 'simulation', 'voice-control')"
+    - "Lowercase except proper nouns"
+  example: ["ROS 2", "rclpy", "Python", "nodes", "topics", "services", "actions"]
+
+sidebar_position:
+  type: integer
+  description: "Numeric position in sidebar (determines page order)"
+  constraints:
+    - "Must match numeric prefix in filename (e.g., 02-python-bridging.md → sidebar_position: 2)"
+    - "Index pages use sidebar_position: 0"
+    - "Sequential numbering (1, 2, 3, ...) within each module"
+  example: 2
+
+# Optional Fields
+
+sidebar_label:
+  type: string
+  description: "Override default sidebar label (derived from title)"
+  constraints:
+    - "Use only when title is too long for sidebar"
+    - "Keep under 30 characters"
+  example: "Python Bridging"
+  optional: true
+
+tags:
+  type: array[string]
+  description: "Additional categorization tags for cross-module topics"
+  constraints:
+    - "Use sparingly (keywords should cover most cases)"
+    - "Useful for cross-cutting concerns (e.g., 'troubleshooting', 'advanced')"
+  example: ["hands-on", "code-example"]
+  optional: true
+
+# Example Frontmatter (Complete)
+
+example_frontmatter: |
+  ---
+  title: "Python Bridging with rclpy"
+  description: "Learn how to connect AI Agents with robot hardware using Python's rclpy library for ROS 2 communication."
+  keywords: ["ROS 2", "rclpy", "Python", "nodes", "topics", "services", "actions"]
+  sidebar_position: 2
+  ---
+
+# Validation Rules
+
+validation:
+  - "All required fields must be present"
+  - "title length: 3-80 characters"
+  - "description length: 10-160 characters"
+  - "keywords array: 5-10 items"
+  - "sidebar_position: positive integer"
+  - "No custom fields allowed (extends frontmatter schema only)"
+
+# Error Messages
+
+error_messages:
+  missing_required_field: "Frontmatter missing required field '{field}'. Add to page YAML block."
+  invalid_sidebar_position: "sidebar_position {value} does not match filename prefix. Expected: {expected}"
+  description_too_long: "description exceeds 160 characters ({count} chars). Shorten for SEO compliance."
+  insufficient_keywords: "keywords array has {count} items. Minimum 5 required for AI navigation."

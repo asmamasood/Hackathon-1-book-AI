@@ -10,11 +10,11 @@ const config = {
   tagline: 'AI-Native Textbook for the Future of Work',
   favicon: 'img/favicon.ico',
 
-  url: 'https://hackathon-1-book-ai.vercel.app',
-  baseUrl: '/',
+  url: process.env.GITHUB_ACTIONS ? 'https://asmamasood.github.io' : 'https://hackathon-1-book-ai.vercel.app',
+  baseUrl: process.env.GITHUB_ACTIONS ? '/Hackathon-1-book-AI/' : '/',
 
   organizationName: 'asmamasood',
-  projectName: 'book',
+  projectName: 'Hackathon-1-book-AI',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -65,7 +65,7 @@ const config = {
             position: 'left',
           },
           {
-            href: 'https://github.com/asmamasood/book',
+            href: 'https://github.com/asmamasood/Hackathon-1-book-AI',
             label: 'GitHub',
             position: 'right',
           },

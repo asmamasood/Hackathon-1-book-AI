@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \".specify/scripts/powershell/setup-plan.ps1\" -Json)",
+      "Bash(test:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \".specify/scripts/powershell/update-agent-context.ps1\" -AgentType claude)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \".specify/scripts/powershell/check-prerequisites.ps1\" -Json -RequireTasks -IncludeTasks)",
+      "Bash(node --version:*)",
+      "Bash(npm:*)",
+      "Bash(npx create-docusaurus@latest . classic)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Skill(sp.implement)",
+      "Bash(git rev-parse:*)",
+      "Bash(if not exist \"static\\\\img\" mkdir staticimg)",
+      "Bash(if not exist \"static\\\\code\" mkdir staticcode)",
+      "Bash(.specify/scripts/bash/create-phr.sh:*)",
+      "Bash(ls:*)",
+      "Bash(powershell.exe -ExecutionPolicy Bypass -File \".specify/scripts/powershell/create-new-feature.ps1\" -Json -Number 2 -ShortName \"landing-page\" \"Create a modern, clean, and professional landing page for Physical AI & Humanoid Robotics textbook with hero image, start button, and responsive design\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}

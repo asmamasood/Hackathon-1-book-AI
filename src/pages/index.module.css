@@ -1,0 +1,554 @@
+/* ============================================
+   LANDING PAGE STYLES
+   Modern, responsive, accessible design
+   ============================================ */
+
+/* ============================================
+   USER STORY 1: Core Landing Page
+   ============================================ */
+
+/* Landing Page Container */
+.landingPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg,
+    var(--ifm-background-color) 0%,
+    var(--ifm-background-surface-color) 100%);
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated Particles Background */
+.landingPage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(96, 165, 250, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.02) 0%, transparent 50%);
+  animation: particleFloat 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Hero Section */
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  flex: 1;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background decorative elements - Animated */
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse 8s ease-in-out infinite, float 10s ease-in-out infinite;
+}
+
+.heroSection::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: pulse 8s ease-in-out infinite 2s, float 12s ease-in-out infinite reverse;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  33% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  66% {
+    transform: translateY(10px) translateX(-10px);
+  }
+}
+
+.heroContent {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hero Title */
+.heroTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  background: linear-gradient(135deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-dark) 50%,
+    var(--ifm-color-primary) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+  animation: gradientShift 3s ease infinite;
+  position: relative;
+}
+
+.heroTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--ifm-color-primary), transparent);
+  animation: underlineGrow 2s ease-out 0.8s forwards;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes underlineGrow {
+  from {
+    width: 0;
+  }
+  to {
+    width: 80%;
+  }
+}
+
+/* Hero Subtitle */
+.heroSubtitle {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  opacity: 0.85;
+  line-height: 1.6;
+  color: var(--ifm-font-color-base);
+  font-weight: 400;
+}
+
+/* Hero Image */
+.heroImageWrapper {
+  margin-bottom: 3rem;
+  max-width: 90vw;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 20px 40px rgba(59, 130, 246, 0.15));
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.6s ease;
+  animation: floatImage 6s ease-in-out infinite;
+}
+
+.heroImageWrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  border-radius: 16px;
+  animation: pulse 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+.heroImageWrapper:hover {
+  transform: translateY(-12px) scale(1.02);
+  filter: drop-shadow(0 30px 60px rgba(59, 130, 246, 0.3));
+}
+
+.heroImage {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.heroImageWrapper:hover .heroImage {
+  transform: rotate(-2deg);
+}
+
+@keyframes floatImage {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* ============================================
+   USER STORY 2: Interactive Call-to-Action
+   ============================================ */
+
+/* CTA Section */
+.ctaSection {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* CTA Button - Base Styles */
+.ctaButton {
+  display: inline-block;
+  padding: 1.125rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%);
+  color: #ffffff !important;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3),
+              0 10px 30px rgba(59, 130, 246, 0.15),
+              inset 0 -2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  animation: buttonPulse 2s ease-in-out infinite;
+}
+
+/* CTA Button - Shine Effect */
+.ctaButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: skewX(-20deg);
+  animation: shine 3s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  20%, 100% {
+    left: 200%;
+  }
+}
+
+/* CTA Button - Ripple Effect */
+.ctaButton::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.ctaButton:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3),
+                0 10px 30px rgba(59, 130, 246, 0.15),
+                inset 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4),
+                0 15px 40px rgba(59, 130, 246, 0.25),
+                inset 0 -2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* CTA Button - Hover Animation */
+.ctaButton:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5),
+              0 20px 50px rgba(59, 130, 246, 0.35),
+              inset 0 -2px 10px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  color: #ffffff !important;
+  animation: none;
+}
+
+/* CTA Button - Focus State (Keyboard Accessibility) */
+.ctaButton:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 4px;
+}
+
+/* CTA Button - Active State */
+.ctaButton:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: 0 2px 10px rgba(59, 130, 246, 0.3);
+}
+
+/* ============================================
+   USER STORY 3: Responsive Multi-Device
+   ============================================ */
+
+/* Mobile-first base styles (already applied above) */
+
+/* Tablet Breakpoint (768px and up) */
+@media (min-width: 768px) {
+  .heroSection {
+    padding: 3rem 2rem;
+  }
+
+  .heroImageWrapper {
+    max-width: 500px;
+  }
+
+  .heroContent {
+    margin-bottom: 3rem;
+  }
+}
+
+/* Desktop Breakpoint (1024px and up) */
+@media (min-width: 1024px) {
+  .heroSection {
+    padding: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .heroImageWrapper {
+    max-width: 600px;
+  }
+}
+
+/* Button Responsive Sizing */
+@media (max-width: 767px) {
+  .ctaButton {
+    width: 100%;
+    max-width: 280px;
+    text-align: center;
+  }
+}
+
+/* ============================================
+   USER STORY 4: Footer
+   ============================================ */
+
+/* Landing Footer */
+.landingFooter {
+  padding: 2rem;
+  text-align: center;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+  background: linear-gradient(to top,
+    var(--ifm-background-surface-color) 0%,
+    transparent 100%);
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.copyright {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--ifm-font-color-base);
+}
+
+.attribution {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  color: var(--ifm-font-color-base);
+}
+
+.attribution a {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================
+   USER STORY 5: Theme & Accessibility
+   ============================================ */
+
+/* Dark Mode Adjustments */
+[data-theme='dark'] .landingPage {
+  background: linear-gradient(135deg,
+    var(--ifm-background-color) 0%,
+    #0a0e1a 100%);
+}
+
+[data-theme='dark'] .heroSection::before {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+}
+
+[data-theme='dark'] .heroSection::after {
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+}
+
+[data-theme='dark'] .heroTitle {
+  background: linear-gradient(135deg, var(--ifm-color-primary-light) 0%, var(--ifm-color-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme='dark'] .heroImage {
+  opacity: 0.95;
+  filter: brightness(1.05);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+[data-theme='dark'] .heroImageWrapper {
+  filter: drop-shadow(0 20px 40px rgba(59, 130, 246, 0.25));
+}
+
+[data-theme='dark'] .heroImageWrapper:hover {
+  filter: drop-shadow(0 25px 50px rgba(59, 130, 246, 0.35));
+}
+
+[data-theme='dark'] .ctaButton {
+  box-shadow: 0 4px 15px rgba(96, 165, 250, 0.4),
+              0 10px 30px rgba(96, 165, 250, 0.2);
+}
+
+[data-theme='dark'] .ctaButton:hover {
+  box-shadow: 0 6px 20px rgba(96, 165, 250, 0.5),
+              0 15px 40px rgba(96, 165, 250, 0.3);
+}
+
+/* Fade-in Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply fade-in with staggered delays */
+.heroTitle {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.heroSubtitle {
+  animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+.heroImageWrapper {
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.ctaSection {
+  animation: fadeIn 0.8s ease-out 0.6s both;
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .heroTitle,
+  .heroSubtitle,
+  .heroImageWrapper,
+  .ctaSection {
+    animation: none;
+  }
+
+  .heroImageWrapper {
+    transition: none;
+  }
+
+  .heroImageWrapper:hover {
+    transform: none;
+  }
+
+  .ctaButton {
+    transition: none;
+  }
+
+  .ctaButton::before {
+    display: none;
+  }
+
+  .ctaButton:hover {
+    transform: none;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* ============================================
+   ADDITIONAL POLISH
+   ============================================ */
+
+/* Ensure proper spacing and layout */
+.heroSection > * {
+  width: 100%;
+}
+
+/* Print styles (optional) */
+@media print {
+  .landingFooter {
+    border-top: 1px solid #000;
+  }
+
+  .ctaButton {
+    border: 2px solid var(--ifm-color-primary);
+  }
+}
